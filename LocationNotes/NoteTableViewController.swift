@@ -20,12 +20,30 @@ class NoteTableViewController: UITableViewController {
         
         textTitle.text = note?.title
         textDescription.text = note?.textDescription
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        
+        if note?.title != textTitle.text || note?.textDescription != textDescription.text {
+            note?.dateUpdate = NSDate() as Date
+        }
+        
+        // MARK: TODO - refactor required!
+        if textTitle.text == "" {
+            if note?.title == "" {
+                CoreDataManager.sharedInstance.managedObjectContext.delete(note!)
+                CoreDataManager.sharedInstance.saveContext()
+                return
+            } else {
+                note?.title = note?.title
+            }
+        } else {
+            note?.title = textTitle.text
+        }
+        
+        note?.textDescription = textDescription.text
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        CoreDataManager.sharedInstance.saveContext()
     }
 
     // MARK: - Table view data source

@@ -23,8 +23,8 @@ public class Note: NSManagedObject {
     class func newNote(title: String, inFolder: Folder?) -> Note {
         let newNote = Note(context: CoreDataManager.sharedInstance.managedObjectContext)
         newNote.title = title
-        newNote.dateUpdate = NSDate() as Date
         newNote.folder = inFolder
+        newNote.dateUpdate = NSDate() as Date
         
         return newNote
     }

@@ -21,7 +21,7 @@ class NotesTableViewController: UITableViewController {
     }
     
     @IBAction func pushAddAction(_ sender: Any) {
-        selectedNote = Note.newNote(title: "new name", inFolder: folder)
+        selectedNote = Note.newNote(title: "", inFolder: folder)
         performSegue(withIdentifier: "goToNote", sender: self)
     }
     
@@ -42,7 +42,9 @@ class NotesTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        tableView.reloadData()
+        dismiss(animated: true, completion: {
+            self.tableView.reloadData()
+        })
     }
 
     // MARK: - Table view data source
@@ -63,6 +65,12 @@ class NotesTableViewController: UITableViewController {
 
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let noteInCell = foldersActual[indexPath.row]
+        selectedNote = noteInCell
+        performSegue(withIdentifier: "goToNote", sender: self)
+    }
 
     /*
     // Override to support conditional editing of the table view.
@@ -72,17 +80,17 @@ class NotesTableViewController: UITableViewController {
     }
     */
 
-    /*
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            let noteInCell = foldersActual[indexPath.row]
+            CoreDataManager.sharedInstance.managedObjectContext.delete(noteInCell)
+            CoreDataManager.sharedInstance.saveContext()
+            tableView.deleteRows(at: [indexPath], with: .left)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
 
     /*
     // Override to support rearranging the table view.
