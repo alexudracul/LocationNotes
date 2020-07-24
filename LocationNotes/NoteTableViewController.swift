@@ -1,5 +1,5 @@
 //
-//  FolderTableViewController.swift
+//  NoteTableViewController.swift
 //  LocationNotes
 //
 //  Created by Aleksey Lavrukhin on 24.07.2020.
@@ -8,31 +8,18 @@
 
 import UIKit
 
-class NotesTableViewController: UITableViewController {
+class NoteTableViewController: UITableViewController {
     
-    var folder: Folder?
-    var selectedNote: Note?
-    var foldersActual: [Note] {
-        if let folder = folder {
-            return folder.notesSorted
-        } else {
-            return notes
-        }
-    }
+    var note: Note?
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var textTitle: UITextField!
+    @IBOutlet weak var textDescription: UITextView!
     
-    @IBAction func pushAddAction(_ sender: Any) {
-        selectedNote = Note.newNote(title: "new name", inFolder: folder)
-        performSegue(withIdentifier: "goToNote", sender: self)
-    }
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let folder = folder {
-            navigationItem.title = folder.title
-        } else {
-            navigationItem.title = "All notes"
-        }
+        
+        textTitle.text = note?.title
+        textDescription.text = note?.textDescription
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -40,29 +27,18 @@ class NotesTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        tableView.reloadData()
-    }
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return foldersActual.count
-    }
-
+    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CellNote", for: indexPath)
-        let noteInCell = foldersActual[indexPath.row]
-        cell.textLabel?.text = noteInCell.title
-        cell.detailTextLabel?.text = noteInCell.dateUpdateString
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+
+        // Configure the cell...
 
         return cell
     }
+    */
 
     /*
     // Override to support conditional editing of the table view.
@@ -99,15 +75,14 @@ class NotesTableViewController: UITableViewController {
     }
     */
 
+    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "goToNote" {
-            (segue.destination as! NoteTableViewController).note = selectedNote
-        }
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
     }
+    */
 
 }

@@ -17,13 +17,14 @@ public class Note: NSManagedObject {
         let df = DateFormatter()
         df.dateStyle = .medium
         df.timeStyle = .short
-        return df.string(from: self.dateUpdate as! Date)
+        return df.string(from: self.dateUpdate!)
     }
     
-    class func newNote(title: String) -> Note {
+    class func newNote(title: String, inFolder: Folder?) -> Note {
         let newNote = Note(context: CoreDataManager.sharedInstance.managedObjectContext)
         newNote.title = title
         newNote.dateUpdate = NSDate() as Date
+        newNote.folder = inFolder
         
         return newNote
     }
