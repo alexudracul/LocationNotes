@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FolderTableViewController: UITableViewController {
+class NotesTableViewController: UITableViewController {
     
     var folder: Folder?
 
