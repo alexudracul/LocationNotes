@@ -22,6 +22,8 @@
 		BB4D695124CAEE2D00A393F7 /* Folder+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4D694924CAEE2D00A393F7 /* Folder+CoreDataClass.swift */; };
 		BB4D695224CAEE2D00A393F7 /* NoteImage+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4D694A24CAEE2D00A393F7 /* NoteImage+CoreDataClass.swift */; };
 		BB4D695424CAEF8600A393F7 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4D695324CAEF8600A393F7 /* CoreDataManager.swift */; };
+		BB4D695624CB03B200A393F7 /* FoldersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4D695524CB03B200A393F7 /* FoldersTableViewController.swift */; };
+		BB4D695824CB08DA00A393F7 /* FolderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4D695724CB08DA00A393F7 /* FolderTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +44,8 @@
 		BB4D694924CAEE2D00A393F7 /* Folder+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Folder+CoreDataClass.swift"; sourceTree = "<group>"; };
 		BB4D694A24CAEE2D00A393F7 /* NoteImage+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NoteImage+CoreDataClass.swift"; sourceTree = "<group>"; };
 		BB4D695324CAEF8600A393F7 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		BB4D695524CB03B200A393F7 /* FoldersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldersTableViewController.swift; sourceTree = "<group>"; };
+		BB4D695724CB08DA00A393F7 /* FolderTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +80,8 @@
 			children = (
 				BB4D694224CAEE2D00A393F7 /* Model */,
 				BB4D691A24CAD80300A393F7 /* AppDelegate.swift */,
+				BB4D695524CB03B200A393F7 /* FoldersTableViewController.swift */,
+				BB4D695724CB08DA00A393F7 /* FolderTableViewController.swift */,
 				BB4D691C24CAD80300A393F7 /* SceneDelegate.swift */,
 				BB4D692024CAD80300A393F7 /* Main.storyboard */,
 				BB4D692624CAD80700A393F7 /* Assets.xcassets */,
@@ -177,6 +183,8 @@
 				BB4D694F24CAEE2D00A393F7 /* Folder+CoreDataProperties.swift in Sources */,
 				BB4D692524CAD80300A393F7 /* LocationNotes.xcdatamodeld in Sources */,
 				BB4D691B24CAD80300A393F7 /* AppDelegate.swift in Sources */,
+				BB4D695624CB03B200A393F7 /* FoldersTableViewController.swift in Sources */,
+				BB4D695824CB08DA00A393F7 /* FolderTableViewController.swift in Sources */,
 				BB4D691D24CAD80300A393F7 /* SceneDelegate.swift in Sources */,
 				BB4D695224CAEE2D00A393F7 /* NoteImage+CoreDataClass.swift in Sources */,
 				BB4D695424CAEF8600A393F7 /* CoreDataManager.swift in Sources */,

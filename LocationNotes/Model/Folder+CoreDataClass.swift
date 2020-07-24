@@ -12,6 +12,11 @@ import CoreData
 
 
 public class Folder: NSManagedObject {
+    var notesSorted: [Note] {
+        let sd = NSSortDescriptor.init(key: "dateUpdate", ascending: false)
+        return self.notes?.sortedArray(using: [sd]) as! [Note]
+    }
+    
     class func newFolder(title: String) -> Folder {
         let newFolder = Folder(context: CoreDataManager.sharedInstance.managedObjectContext)
         newFolder.title = title

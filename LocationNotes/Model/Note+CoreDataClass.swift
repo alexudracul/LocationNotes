@@ -13,6 +13,13 @@ import UIKit
 
 
 public class Note: NSManagedObject {
+    var dateUpdateString: String {
+        let df = DateFormatter()
+        df.dateStyle = .medium
+        df.timeStyle = .short
+        return df.string(from: self.dateUpdate as! Date)
+    }
+    
     class func newNote(title: String) -> Note {
         let newNote = Note(context: CoreDataManager.sharedInstance.managedObjectContext)
         newNote.title = title

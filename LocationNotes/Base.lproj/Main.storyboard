@@ -80,13 +80,13 @@
         <!--Folders-->
         <scene sceneID="xfy-db-i9p">
             <objects>
-                <tableViewController id="0MN-u6-xpC" sceneMemberID="viewController">
+                <tableViewController id="0MN-u6-xpC" customClass="FoldersTableViewController" customModule="LocationNotes" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="fhZ-U8-SuP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="xx1-RQ-A6u" style="IBUITableViewCellStyleDefault" id="4x8-Qs-ezx">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CellFolder" textLabel="xx1-RQ-A6u" style="IBUITableViewCellStyleDefault" id="4x8-Qs-ezx">
                                 <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4x8-Qs-ezx" id="mRz-1b-OjC">
@@ -110,10 +110,14 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Folders" id="cFj-D1-iHf">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="2U5-O2-Jzp"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="2U5-O2-Jzp">
+                            <connections>
+                                <action selector="pushAddAction:" destination="0MN-u6-xpC" id="H5F-cZ-0sf"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="kMc-ew-oO5" kind="show" id="uJN-4z-dTV"/>
+                        <segue destination="kMc-ew-oO5" kind="show" identifier="goToFolder" id="uJN-4z-dTV"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lo4-fG-gR4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -123,13 +127,13 @@
         <!--Folder title-->
         <scene sceneID="MDS-UA-GWd">
             <objects>
-                <tableViewController id="kMc-ew-oO5" sceneMemberID="viewController">
+                <tableViewController id="kMc-ew-oO5" customClass="FolderTableViewController" customModule="LocationNotes" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="32z-mx-bIM">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="bzN-lB-fW4" detailTextLabel="hDc-X7-cHu" style="IBUITableViewCellStyleSubtitle" id="geO-f5-eCS">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CellNote" textLabel="bzN-lB-fW4" detailTextLabel="hDc-X7-cHu" style="IBUITableViewCellStyleSubtitle" id="geO-f5-eCS">
                                 <rect key="frame" x="0.0" y="28" width="414" height="55.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="geO-f5-eCS" id="TXI-rp-6VD">
