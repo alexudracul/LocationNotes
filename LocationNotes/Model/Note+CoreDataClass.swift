@@ -13,6 +13,29 @@ import UIKit
 
 
 public class Note: NSManagedObject {
+    var imageActual: UIImage? {
+        set {
+            if newValue == nil {
+                if self.noteImage != nil {
+                    CoreDataManager.sharedInstance.managedObjectContext.delete(self.noteImage!)
+                }
+                self.noteImage = nil
+            } else {
+                if self.noteImage == nil {
+                    self.noteImage = NoteImage(context: CoreDataManager.sharedInstance.managedObjectContext)
+                }
+                self.noteImage?.image = newValue!.jpegData(compressionQuality: 1)
+                self.thumbnail = newValue!.jpegData(compressionQuality: 0.1)
+            }
+        }
+        get {
+            if self.noteImage != nil && noteImage?.image != nil {
+                return UIImage(data: self.noteImage!.image! as Data)
+            }
+            return nil
+        }
+    }
+    
     var dateUpdateString: String {
         let df = DateFormatter()
         df.dateStyle = .medium
@@ -28,6 +51,7 @@ public class Note: NSManagedObject {
         
         return newNote
     }
+
     
     func addImage(image: UIImage) {
         let noteImage = NoteImage(context: CoreDataManager.sharedInstance.managedObjectContext)

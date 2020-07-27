@@ -10,43 +10,86 @@ import UIKit
 
 class NoteTableViewController: UITableViewController {
     
+    let imagePicker: UIImagePickerController = UIImagePickerController()
     var note: Note?
+    
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var textTitle: UITextField!
     @IBOutlet weak var textDescription: UITextView!
+    @IBOutlet weak var labelFolder: UILabel!
+    @IBOutlet weak var labelFolderTitle: UILabel!
+    
+    @IBAction func pushDoneAction(_ sender: Any) {
+        saveNote()
+        navigationController?.popViewController(animated: true)
+    }
+    
+    func saveNote() {
+        if note?.title != textTitle.text || note?.textDescription != textDescription.text || note?.imageActual != imageView.image {
+            note?.dateUpdate = NSDate() as Date
+        }
+        note?.title = textTitle.text
+        note?.textDescription = textDescription.text
+        note?.imageActual = imageView.image
+        
+        CoreDataManager.sharedInstance.saveContext()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if let folder = note?.folder {
+            labelFolderTitle.text = folder.title
+        } else {
+            labelFolderTitle.text = "-"
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.title = note?.title
         textTitle.text = note?.title
         textDescription.text = note?.textDescription
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        
-        if note?.title != textTitle.text || note?.textDescription != textDescription.text {
-            note?.dateUpdate = NSDate() as Date
-        }
-        
-        // MARK: TODO - refactor required!
-        if textTitle.text == "" {
-            if note?.title == "" {
-                CoreDataManager.sharedInstance.managedObjectContext.delete(note!)
-                CoreDataManager.sharedInstance.saveContext()
-                return
-            } else {
-                note?.title = note?.title
-            }
-        } else {
-            note?.title = textTitle.text
-        }
-        
-        note?.textDescription = textDescription.text
-
-        CoreDataManager.sharedInstance.saveContext()
+        imageView.image = note?.imageActual
     }
 
     // MARK: - Table view data source
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        if indexPath.row == 0 && indexPath.section == 0 {    
+            let alertController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertController.Style.actionSheet)
+            
+            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType(rawValue: 1)!) {
+                let actionCamera = UIAlertAction(title: "Make a photo", style: UIAlertAction.Style.default) { (action) in
+                    self.imagePicker.sourceType = .camera
+                    self.imagePicker.delegate = self
+                    self.present(self.imagePicker, animated: true, completion: nil)
+                }
+                alertController.addAction(actionCamera)
+            }
+            
+            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType(rawValue: 0)!) {
+                let actionPhoto = UIAlertAction(title: "Select from library", style: UIAlertAction.Style.default) { (action) in
+                    self.imagePicker.sourceType = .savedPhotosAlbum
+                    self.imagePicker.delegate = self
+                    self.present(self.imagePicker, animated: true, completion: nil)
+                }
+                alertController.addAction(actionPhoto)
+            }
+            
+            if self.imageView.image != nil {
+                let actionDelete = UIAlertAction(title: "Delete", style: UIAlertAction.Style.destructive) { (action) in self.imageView.image = nil
+                }
+                alertController.addAction(actionDelete)
+            }
+            
+            let actionCancel = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil)
+            alertController.addAction(actionCancel)
+            
+            present(alertController, animated: true, completion: nil)
+        }
+    }
 
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -93,14 +136,24 @@ class NoteTableViewController: UITableViewController {
     }
     */
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "goToSelectFolder" {
+            (segue.destination as! SelectFolderTableViewController).note = note
+        }
     }
-    */
+    
+}
 
+extension NoteTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        imageView.image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+        imagePicker.dismiss(animated: true, completion: nil)
+    }
+
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        imagePicker.dismiss(animated: true, completion: nil)
+    }
 }

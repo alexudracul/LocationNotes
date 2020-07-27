@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB05B17824CF19F000CB174B /* SelectFolderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB05B17724CF19F000CB174B /* SelectFolderTableViewController.swift */; };
 		BB4D691B24CAD80300A393F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4D691A24CAD80300A393F7 /* AppDelegate.swift */; };
 		BB4D691D24CAD80300A393F7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4D691C24CAD80300A393F7 /* SceneDelegate.swift */; };
 		BB4D692224CAD80300A393F7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB4D692024CAD80300A393F7 /* Main.storyboard */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BB05B17724CF19F000CB174B /* SelectFolderTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectFolderTableViewController.swift; sourceTree = "<group>"; };
 		BB4D691724CAD80300A393F7 /* LocationNotes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocationNotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB4D691A24CAD80300A393F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB4D691C24CAD80300A393F7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 				BB4D695524CB03B200A393F7 /* FoldersTableViewController.swift */,
 				BB4D695724CB08DA00A393F7 /* NotesTableViewController.swift */,
 				BB4D695924CB145200A393F7 /* NoteTableViewController.swift */,
+				BB05B17724CF19F000CB174B /* SelectFolderTableViewController.swift */,
 				BB4D691C24CAD80300A393F7 /* SceneDelegate.swift */,
 				BB4D692024CAD80300A393F7 /* Main.storyboard */,
 				BB4D692624CAD80700A393F7 /* Assets.xcassets */,
@@ -185,6 +188,7 @@
 				BB4D695A24CB145200A393F7 /* NoteTableViewController.swift in Sources */,
 				BB4D694D24CAEE2D00A393F7 /* Location+CoreDataClass.swift in Sources */,
 				BB4D694F24CAEE2D00A393F7 /* Folder+CoreDataProperties.swift in Sources */,
+				BB05B17824CF19F000CB174B /* SelectFolderTableViewController.swift in Sources */,
 				BB4D692524CAD80300A393F7 /* LocationNotes.xcdatamodeld in Sources */,
 				BB4D691B24CAD80300A393F7 /* AppDelegate.swift in Sources */,
 				BB4D695624CB03B200A393F7 /* FoldersTableViewController.swift in Sources */,

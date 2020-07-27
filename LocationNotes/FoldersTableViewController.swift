@@ -57,11 +57,17 @@ class FoldersTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         return folders.count
     }
+    
+    // MARK: TODO - refactoring required
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+    }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CellFolder", for: indexPath)
         let folderInCell = folders[indexPath.row]
         cell.textLabel?.text = folderInCell.title
+        cell.detailTextLabel?.text = "\(folderInCell.notes!.count) note(s)"
         
 
         return cell

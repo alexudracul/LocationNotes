@@ -21,7 +21,7 @@ class NotesTableViewController: UITableViewController {
     }
     
     @IBAction func pushAddAction(_ sender: Any) {
-        selectedNote = Note.newNote(title: "", inFolder: folder)
+        selectedNote = Note.newNote(title: "unnamed note", inFolder: folder)
         performSegue(withIdentifier: "goToNote", sender: self)
     }
     
@@ -62,6 +62,11 @@ class NotesTableViewController: UITableViewController {
         let noteInCell = foldersActual[indexPath.row]
         cell.textLabel?.text = noteInCell.title
         cell.detailTextLabel?.text = noteInCell.dateUpdateString
+        if noteInCell.thumbnail != nil {
+            cell.imageView?.image = UIImage(data: noteInCell.thumbnail!)
+        } else {
+            cell.imageView?.image = nil
+        }
 
         return cell
     }
